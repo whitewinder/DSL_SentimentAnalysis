@@ -1,0 +1,2 @@
+LMscore data:
+round0_model_lstm.npz_e56_i75000_valid_59.4285_test_58.7405.npz
