@@ -96,8 +96,8 @@ class monitor(object):
         if config_params.dual_style == 'all':
             merged_var_dic = OrderedDict()
             if config_params.FreezeEmb:
-                merged_var_dic.update(OrderedDict((k + '_S2L',v) for (k,v) in self.classifier.tparams.iteritems() if 'Wemb' not in kk ))
-                merged_var_dic.update(OrderedDict((k + '_L2S',v) for (k,v) in self.CLM.tparams.iteritems() if 'Wemb' not in kk ))
+                merged_var_dic.update(OrderedDict((k + '_S2L',v) for (k,v) in self.classifier.tparams.iteritems() if 'Wemb' not in k ))
+                merged_var_dic.update(OrderedDict((k + '_L2S',v) for (k,v) in self.CLM.tparams.iteritems() if 'Wemb' not in k ))
             else:
                 merged_var_dic.update(OrderedDict((k + '_S2L',v) for (k,v) in self.classifier.tparams.iteritems()))
                 merged_var_dic.update(OrderedDict((k + '_L2S',v) for (k,v) in self.CLM.tparams.iteritems()))
@@ -107,7 +107,7 @@ class monitor(object):
             self.f_grad_shared, self.f_update = Optim[config_params.optim](lrate, merged_var_dic, grads_S2L + grads_L2S, inps, outs)
         elif config_params.dual_style == 'S2L':
             if config_params.FreezeEmb:
-                merged_var_dic = OrderedDict((k + '_S2L',v) for (k,v) in self.classifier.tparams.iteritems() if 'Wemb' not in kk )
+                merged_var_dic = OrderedDict((k + '_S2L',v) for (k,v) in self.classifier.tparams.iteritems() if 'Wemb' not in k )
             else:
                 merged_var_dic = OrderedDict((k + '_S2L',v) for (k,v) in self.classifier.tparams.iteritems())
 
@@ -117,7 +117,7 @@ class monitor(object):
             self.f_grad_shared, self.f_update = Optim[config_params.optim](lrate, merged_var_dic, grads_S2L, inps, outs)
         elif config_params.dual_style == 'L2S': 
             if config_params.FreezeEmb:
-                merged_var_dic = OrderedDict((k + '_L2S',v) for (k,v) in self.CLM.tparams.iteritems() if 'Wemb' not in kk )
+                merged_var_dic = OrderedDict((k + '_L2S',v) for (k,v) in self.CLM.tparams.iteritems() if 'Wemb' not in k )
             else:
                 merged_var_dic = OrderedDict((k + '_L2S',v) for (k,v) in self.CLM.tparams.iteritems())
                 
